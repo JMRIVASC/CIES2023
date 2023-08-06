@@ -114,7 +114,7 @@ texdoc stlog close
 
 \vspace{0.5cm}
 b) Genere una variable dummy para cada ronda de encuesta. Es decir, convierta la variable categórica que muestra la base a una variable binaria para cada ronda de encuesta. 
-
+En primer lugar realizamos una distribución de frecuencias de la variable "periodo". Para mayor efectividad, generamos las dummy de encuesta mediante un loop for. El contador va de 1 al 5 ya que se realizaron 5 levantamientos de información. Es así que se crean las variables enc"i", $i=1, ..., 5$ que representan las variables dummy para cada periodo i, los cuales toman el valor de 1 si la variable "periodo es igual a i. 
 ***/
 texdoc stlog
 
