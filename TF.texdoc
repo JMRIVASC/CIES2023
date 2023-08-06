@@ -342,7 +342,7 @@ xtreg attendschool time treated did, fe  // xtreg
 
 xtreg attendschool time\#\#treated, fe // Forma alternativa
 
-diff everschool, t(treated) p(time) // con diff
+diff attendschool, t(treated) p(time) // con diff
 
 /--------------------------------------------/
 \end{statacode}
