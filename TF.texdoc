@@ -106,6 +106,7 @@ centros poblados o localidades. No obstante, solamente una fracción de los habi
 
 \vspace{0.5cm}
 
+<<<<<<< HEAD
 \begin{enumerate}
 \item [a).] Organice (comando sort) la base en función de las variables ''folio'' (identificado de hogar), ''ID'' (identificador del individuo dentro de su hogar) y ''periodo''. Genere un identificador para cada individuo juntando las variables ID y folio. 
 
@@ -146,6 +147,12 @@ list  Id Periodo in 1/10 // Volvemos a listar la base con las nuevas variables
 /--------------------------------------------/
 \end{statacode}
  
+=======
+a) Organice (comando sort) la base en función de las variables "folio" (identificado de hogar), 'ID' (identificador del individuo dentro de su hogar) y 'periodo'. Genere un identificador para cada individuo juntando las variables ID y folio. 
+
+Para empezar a explorar la base de datos, visualizamos las 10 primeras observaciones de folio, periodo y list con el comando list. Luego, creamos una macro local "vars" que contenga las variables folio, ID y periodo. Posteriormente, ordenamos la base de datos en función a la macro "vars". Creamos una variable "Id" que funcione como identificador único de folio y ID. Asimismo, asignamos una etiqueta a la variable "Id" para describir que representa un identificador único por individuo. Finalmente, se crea la variable "Periodo" que asigna un número secuencial para cada observación de cada individuo. 
+
+>>>>>>> 8589a7f78e3a88d64923d54de33e92a3def799f7
 ***/
 
 texdoc stlog,cmdstrip
@@ -176,6 +183,7 @@ texdoc stlog close
 /***
 
 \vspace{0.5cm}
+<<<<<<< HEAD
 \item [b).] Genere una variable dummy para cada ronda de encuesta. Es decir, convierta la variable categórica que muestra la base a una variable binaria para cada ronda de encuesta. 
 
 \textbf{Para responder a esta consulta nos generamos un bucle que genere una variable dummy en función de cada uno de los periodos. Los detalles de código empleado se presentan a continuación: }
@@ -203,6 +211,10 @@ forvalues i=1/5 {
  
 
 
+=======
+b) Genere una variable dummy para cada ronda de encuesta. Es decir, convierta la variable categórica que muestra la base a una variable binaria para cada ronda de encuesta. 
+En primer lugar realizamos una distribución de frecuencias de la variable "periodo". Para mayor efectividad, generamos las dummy de encuesta mediante un loop for. El contador va de 1 al 5 ya que se realizaron 5 levantamientos de información. Es así que se crean las variables enc"i", $i=1, ..., 5$ que representan las variables dummy para cada periodo i, los cuales toman el valor de 1 si la variable "periodo es igual a i. 
+>>>>>>> 8589a7f78e3a88d64923d54de33e92a3def799f7
 ***/
 texdoc stlog, nolog
 
@@ -239,7 +251,12 @@ xtset Id Periodo
 /--------------------------------------------/
 \end{statacode}
 
+<<<<<<< HEAD
 
+=======
+c) Genere las variables post, tratamiento e interacción. 
+Dado que el programa Progresa comenzó a intervenir en junio de 1998 (periodo 3), se crea una variable dummy "time" que tenga el valor de 1 cuando la variable "periodo" sea mayor o igual a 3 y no sea missing. 
+>>>>>>> 8589a7f78e3a88d64923d54de33e92a3def799f7
 ***/
 texdoc stlog, nolog
 gen time = (periodo>=3) & !missing(periodo) 
