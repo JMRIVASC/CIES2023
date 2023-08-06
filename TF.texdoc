@@ -112,7 +112,7 @@ centros poblados o localidades. No obstante, solamente una fracción de los habi
 
 \vspace{0.5cm}
 
-\textbf{La base de datos \textit{panel\_progresa\_V1.dta} cuenta con 105565 observaciones y 24 variables. Respecto a los grupos formados con las variables folio e ID estos son un total de 21113. Además, debido a la estructura de panel de datos de la base se construyó la variable Periodo. Los códigos empleados se muestran a continuación}
+\textbf{La base de datos \textit{panel\_progresa\_V1.dta} cuenta con 105 565 observaciones y 24 variables. Respecto a los grupos formados con las variables folio e ID estos son un total de 21 113. Además, debido a la estructura de panel de datos de la base se construyó la variable Periodo. Los códigos empleados se muestran a continuación}
 
 \begin{statacode}
 /* Código empleado para resolver la consulta a */ 
