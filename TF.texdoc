@@ -86,7 +86,7 @@ El propósito de este ejercicio es estimar el efecto del programa sobre la tasa 
 
 a) Organice (comando sort) la base en función de las variables "folio" (identificado de hogar), 'ID' (identificador del individuo dentro de su hogar) y 'periodo'. Genere un identificador para cada individuo juntando las variables ID y folio. 
 
-ddfggdgdsdskdspkfksfkfkfk $\epsilon ^2$
+Para empezar a explorar la base de datos, visualizamos las 10 primeras observaciones de folio, periodo y list con el comando list. Luego, creamos una macro local "vars" que contenga las variables folio, ID y periodo. Posteriormente, ordenamos la base de datos en función a la macro "vars". Creamos una variable "Id" que funcione como identificador único de folio y ID. Asimismo, asignamos una etiqueta a la variable "Id" para describir que representa un identificador único por individuo. Finalmente, se crea la variable "Periodo" que asigna un número secuencial para cada observación de cada individuo. 
 
 ***/
 
