@@ -130,7 +130,7 @@ texdoc stlog close
 
 
 c) Genere las variables post, tratamiento e interacción. 
-
+Dado que el programa Progresa comenzó a intervenir en junio de 1998 (periodo 3), se crea una variable dummy "time" que tenga el valor de 1 cuando la variable "periodo" sea mayor o igual a 3 y no sea missing. 
 ***/
 texdoc stlog
 **** Generamos variable dummmy cuando el tratamiento comienza. El programa comenzó a intervenir a los beneficiarios en junio de 1998
