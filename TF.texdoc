@@ -31,7 +31,7 @@ texdoc init TF.tex, replace
 
 \title{\large\textbf{TRABAJO FINAL DE EVALUACIÓN DE IMPACTO PARA LA GESTIÓN PÚBLICA }}
 \author{Juan Manuel Rivas Castillo \\
-Darha Chavez Vasquez \\
+Darha Chávez Vásquez \\
 José Emilio Chicasaca Huamani}
 \date{08 de agosto de 2023}
 \usepackage{listings}
@@ -130,19 +130,19 @@ list  folio ID periodo in 1/10 // Listamos los primeros 10 datos de folio e ID
 
 local vars `folio ID periodo' // Guardamos en una local las variables de interés
 
-sort `vars' // Ordenamos la base según la variable de interés 
+sort `vars' // Ordenamos la base según las variables de interés 
 
 
 list  folio ID periodo in 1/10 // Observamos las primeras 10 observaciones de las variables de interés
 
-egen Id = group(folio ID) // Creamos el identificador de grupos
+egen Id = group(folio ID) // Creamos el identificador único de individuos
 
 
 label var Id `Identidicador por individuos' // Etiquetamos la variable Id
 
-bys folio ID (periodo): gen Periodo = \_n   // Generamos el número de observaciones por individuos
+bys folio ID (periodo): gen Periodo = \_n   // Generamos el número de observaciones por individuos y periodo de la encuesta
 
-list  Id Periodo in 1/10 // Volvemos a listar la base con las nuevas variables
+list Id Periodo in 1/10 // Volvemos a listar la base con las nuevas variables
 
 /--------------------------------------------/
 \end{statacode}
@@ -150,7 +150,7 @@ list  Id Periodo in 1/10 // Volvemos a listar la base con las nuevas variables
 =======
 a) Organice (comando sort) la base en función de las variables "folio" (identificado de hogar), 'ID' (identificador del individuo dentro de su hogar) y 'periodo'. Genere un identificador para cada individuo juntando las variables ID y folio. 
 
-Para empezar a explorar la base de datos, visualizamos las 10 primeras observaciones de folio, periodo y list con el comando list. Luego, creamos una macro local "vars" que contenga las variables folio, ID y periodo. Posteriormente, ordenamos la base de datos en función a la macro "vars". Creamos una variable "Id" que funcione como identificador único de folio y ID. Asimismo, asignamos una etiqueta a la variable "Id" para describir que representa un identificador único por individuo. Finalmente, se crea la variable "Periodo" que asigna un número secuencial para cada observación de cada individuo. 
+Para empezar a explorar la base de datos, visualizamos las 10 primeras observaciones de folio, periodo y list con el comando list. Luego, creamos una macro local "vars" que contenga las variables folio, ID y periodo. Posteriormente, ordenamos la base de datos en función a la macro "vars". Creamos una variable "Id" que funcione como identificador único de folio y ID. Asimismo, asignamos una etiqueta a la variable "Id" que representa un identificador único por individuo. Finalmente, se crea la variable "Periodo" que asigna un número de tiempo secuencial para cada observación de cada individuo. 
 
 >>>>>>> 8589a7f78e3a88d64923d54de33e92a3def799f7
 ***/
@@ -186,7 +186,7 @@ texdoc stlog close
 <<<<<<< HEAD
 \item [b).] Genere una variable dummy para cada ronda de encuesta. Es decir, convierta la variable categórica que muestra la base a una variable binaria para cada ronda de encuesta. 
 
-\textbf{Para responder a esta consulta nos generamos un bucle que genere una variable dummy en función de cada uno de los periodos. Los detalles de código empleado se presentan a continuación: }
+\textbf{Para responder a esta consulta nos generamos un bucle que genere una variable dummy en función de cada uno de los cinco periodos. Los detalles del código empleado se presentan a continuación: }
 
 \begin{statacode}
 /* Código empleado para resolver la consulta b */ 
@@ -213,7 +213,7 @@ forvalues i=1/5 {
 
 =======
 b) Genere una variable dummy para cada ronda de encuesta. Es decir, convierta la variable categórica que muestra la base a una variable binaria para cada ronda de encuesta. 
-En primer lugar realizamos una distribución de frecuencias de la variable "periodo". Para mayor efectividad, generamos las dummy de encuesta mediante un loop for. El contador va de 1 al 5 ya que se realizaron 5 levantamientos de información. Es así que se crean las variables enc"i", $i=1, ..., 5$ que representan las variables dummy para cada periodo i, los cuales toman el valor de 1 si la variable "periodo es igual a i. 
+En primer lugar realizamos una distribución de frecuencias de la variable "periodo". Para mayor efectividad, generamos las dummy de encuesta mediante un loop for. El contador va desde 1 hsta el 5 porque se realizaron 5 levantamientos de información. Es así que se crean las variables enc"i", $i=1, ..., 5$ que representan las variables dummy para cada periodo $i$, los cuales toman el valor de 1 si la variable "periodo es igual a $i$. 
 >>>>>>> 8589a7f78e3a88d64923d54de33e92a3def799f7
 ***/
 texdoc stlog, nolog
@@ -228,7 +228,7 @@ texdoc stlog close
 /***
 \item [c).] Genere las variables post, tratamiento e interacción. 
 
-\textbf{Dado que el programa comenzó a intervenir a los beneficiarios en junio de 1998, se generó una variable dummy que toma el valor de 1 a partir del período 3 (octubre de 1998) y 0 para períodos anteriores. Además, identificamos a la variable **part\_efectiva** para identificar a los tratados y controles. Con la multiplicación de las dos variables se generó la variable de interacción y; finalmente, se configuró la base de datos como de tipo panel.}
+\textbf{Dado que el programa comenzó a intervenir a los beneficiarios a partir de junio de 1998, se generó una variable dummy que toma el valor de 1 a partir del período 3 (octubre de 1998) y 0 para períodos anteriores. Además, observamos que la variable **part\_efectiva** identifica a los tratados y controles. Con la multiplicación de ambas variables se generó la variable de interacción y; finalmente, se configuró la base de datos como de tipo panel.}
 
 \begin{statacode}
 /* Código empleado para resolver la consulta c */ 
@@ -259,11 +259,13 @@ Dado que el programa Progresa comenzó a intervenir en junio de 1998 (periodo 3)
 >>>>>>> 8589a7f78e3a88d64923d54de33e92a3def799f7
 ***/
 texdoc stlog, nolog
+***Se crea la variable de periodo (antes y post intervención)
 gen time = (periodo>=3) & !missing(periodo) 
+***Se renombra a la variable del tratamiento
 rename part_ treated
-**** Creamos la interaccion entre ambos
+**** Creamos la interaccion entre ambas variables
 gen did = time*treated	
-**** Le indicamos a stata que trabajamos con un panel
+**** Indicamos a stata que trabajamos con un panel
 xtset Id Periodo 
 texdoc stlog close
 /***
@@ -271,7 +273,7 @@ texdoc stlog close
 
 \item [d).] Genere una dummy si el hogar es considerado pobre en la primera línea de base (octubre de 1997). Hacer esto por "folio" usando el comando bysort. Es decir, si al menos 1 individuo es considerado pobre, todos los individuos de ese folio también sean considerados pobres. 
 
-\textbf{Tal como solicita esta consulta lo que hacemos es identificar si el individuo es pobre en la línea base y si ocurre ello se extrapolan todos los resultados al folio}
+\textbf{Tal como solicita esta consulta, lo que hacemos es identificar si el individuo es pobre en la línea base y si ocurre ello se extrapolan todos los resultados al folio}
 
 \begin{statacode}
 /* Código empleado para resolver la consulta d */ 
@@ -290,8 +292,11 @@ egen polb= max(poLB \> 0), by(folio)
 
 ***/
 texdoc stlog, nolog
+***Se crea una variable
 gen poLB = 0
+*** Se ordena la data a nivel de folio y se asigna 1 a la variable anterior si el individuo es pobre y si el periodo de la encuesta es octubre de 1997
 bys folio: replace poLB = 1 if pobre == 1 & periodo==1
+*** Se crea una variable que tome el valor de 1 si en el hogar algún miembro es pobre
 egen polb= max(poLB > 0), by(folio)
 texdoc stlog close
 /***
@@ -312,7 +317,6 @@ keep if polb!=0
 \end{statacode}
 
 
-
 ***/
 texdoc stlog, nolog
 keep if polb!=0
@@ -320,8 +324,33 @@ texdoc stlog close
 /***
 
 \item [f).] Estime el efecto medio del tratamiento aplicando el método de doble diferencia. No olvide mostrar el valor de la 1era diferencia y de la 2da diferencia. 
+\textbf{Primero, se realiza un análisis de diferencia de medias para la variable de resultado y las covariables antes de la intervención para los individuos tratados y no tratados:}
 
-\textbf{Tomemos en consideración que la ecuación a estimar es la siguiente dado el método de doble diferencia: }
+\begin{statacode}
+/* Código empleado Ppara testear la diferencia de medias entre la variable de resultado y covariables 
+/--------------------------------------------/
+diff attendschool, t(treated) p(time) cov(edad hhsize educfather educmother nodad nomom  sex)  test
+label define treated1 0 "Control" 1 "Tratado"
+label values treated treated1 
+hist attendschool if time==0 , percent by(treated, title("Antes de la intervención") legend(off)  note("") graphregion(color(white))) d ylabel(, nogrid labsize(vsmall)) colo(midblue) lcolo(black) ytitl("Porcentaje") xtitl("Variable de resultado: Asistencia a la escuela") xlabel(0 "No" 1 "Si")  graphregion(color(none) ifcolor(none) ilcol(none)) xsize(3.2) ysize(2.36) addlabopt(mlabsize(vsmall) mlabangle(0)) 
+/--------------------------------------------/
+\end{statacode}
+
+***/
+texdoc stlog, nolog
+diff attendschool, t(treated) p(time) cov(edad hhsize educfather educmother nodad nomom  sex)  test
+*** Se modifican las etiquetas de la variable de tratamiento
+label define treated1 0 "Control" 1 "Tratado"
+label values treated treated1  
+*** Se crea un histograma de la variable de resultado antes de la intervención considerando la categoría de tratamiento
+hist attendschool if time==0 , percent by(treated, title("Antes de la intervención") legend(off)  note("") graphregion(color(white))) d ylabel(, nogrid labsize(vsmall)) colo(midblue) lcolo(black) ytitl("Porcentaje") xtitl("Variable de resultado: Asistencia a la escuela") xlabel(0 "No" 1 "Si")  graphregion(color(none) ifcolor(none) ilcol(none)) xsize(3.2) ysize(2.36) addlabopt(mlabsize(vsmall) mlabangle(0)) 
+texdoc stlog close
+texdoc write \input{t1.tex}
+/***
+
+\textbf{De acuerdo los resultados del test, los promedios de las variables: participación en la escuela (ver gráfico), el número de miembros del hogar, el sexo y la educación del padre y de la madre son estadísticamente diferentes para los tratados y no tratados antes de la intervención. Esto no representa un problema en el estimador de DID porque este no requiere imponer una restricción de igualdad en características pre tratamiento entre tratados y controles, sino que se basa en imponer la restricción de que a pesar de ser diferentes, evolucionen de manera similar (supuesto de tendencias paralelas).}
+
+\textbf{Por otro lado, la ecuación a estimar mediante el método de doble diferencias es la siguiente: }
 
 $$ attendschool _{it} = \alpha + \beta_1*time + \beta_2*treated + \beta_3*(time*treated) +\epsilon_{it} $$
 
@@ -381,7 +410,7 @@ texdoc write \input{t1.tex}
 \item [g).] Proponga y aplique mejoras a la estimación realizada: puede incluir covariables, clusterizar errores, corregir heterocedasticidad, etc. 
 \end{enumerate}
 
-\textbf{Para corregir potenciales problemas con los errores estándar se realiza una estimación de tipo Boostrapping a partir de 50 estimaciones, luego de ello se incluyen un conjunto de covariables asociadas a asistir a la escuela; finalmente, se corrigen los errores estándar de las estimaciones mediate boostrapping}
+\textbf{Para corregir potenciales problemas con los errores estándar se realiza una estimación de tipo Boostrapping a partir de 50 estimaciones. Luego de ello, se incluyen un conjunto de covariables asociadas a asistir a la escuela; finalmente, se corrigen los errores estándar de las estimaciones mediate boostrapping}
 
 \begin{statacode}
 /* Código empleado para resolver la consulta g */ 
@@ -422,7 +451,7 @@ texdoc stlog close
 texdoc write \input{t2.tex}
 
 /***
-\textbf{La inclusión de covariables y el trabajar con boostrapping vemos que no genera modificaciones en el efecto final.}
+\textbf{La inclusión de covariables y el trabajar con boostrapping no genera modificaciones en el efecto final.}
 
 
 \newpage
