@@ -23,71 +23,133 @@ texdoc init TF.tex, replace
 \usepackage{titlesec}
 \usepackage{lscape}
 \usepackage[flushleft, para]{threeparttable}
-\title{EVALUACIÓN DE IMPACTO PARA LA GESTIÓN PÚBLICA }
+\setlength{\parindent}{0pt}
+\usepackage{courier}
+\usepackage{titlesec}
+% Cambiar el formato de la numeración de las secciones
+\renewcommand\thesection{\Roman{section}}
+
+\title{\large\textbf{TRABAJO FINAL DE EVALUACIÓN DE IMPACTO PARA LA GESTIÓN PÚBLICA }}
 \author{Juan Manuel Rivas Castillo \\
-\large Examen Final}
+Darha Chavez Vasquez \\
+José Emilio Chicasaca Huamani}
 \date{08 de agosto de 2023}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+% Definir estilo para el código de Stata
+\lstdefinestyle{stata}{
+  language=Stata,
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{blue},
+  stringstyle=\color{red},
+  commentstyle=\color{green!60!black},
+  breaklines=true,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+}
+\newtcolorbox{statacode}{
+  colback=gray!5!white,
+  colframe=gray!75!black,
+  listing only,
+  listing options={style=stata},
+  left=5pt,
+  right=5pt,
+}
 
 
 
 
 \begin{document}
 
-%\maketitle
+\maketitle
 
-\tableofcontents\newpage
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{roman}
+\section*{Indicaciones:}
 
-
-
-\section{Indicaciones:}
-
-– El trabajo consiste en realizar dos de los tres ejercicios propuestos en este documento. 
-
-\vspace{0.5cm}
-
-– La entrega consiste en el do file (STATA) comentado. También debe entregar los resultados (tablas, gráficos, etc.) explicados en un archivo Word o PDF. 
-
-\vspace{0.5cm}
-
-– El trabajo se puede realizar en grupos de máximo 4 integrantes. 
+\begin{enumerate}
+  \item El trabajo consiste en realizar dos de los tres ejercicios propuestos en este documento.
+  \item La entrega consiste en el do file (STATA) comentado. También debe entregar los resultados (tablas, gráficos, etc.) explicados en un archivo Word o PDF. 
+  \item El trabajo se puede realizar en grupos de máximo 4 integrantes. 
+\end{enumerate}
 
 
-\vspace{0.5cm}
+\newpage
 
 \section{DIFERENCIAS EN DIFERENCIAS}
 
-El programa de transferencias condicionadas PROGRESA, conocido también como Oportunidades o Programa de Desarrollo Humano Oportunidades, es una iniciativa social implementada en México con el propósito de combatir la pobreza y promover el desarrollo humano en comunidades vulnerables del país. 
+\begin{enumerate}
 
-\vspace{0.5cm}
+\item El programa de transferencias condicionadas PROGRESA, conocido también como Oportunidades o Programa de Desarrollo Humano Oportunidades, es una iniciativa social implementada en México con el propósito de combatir la pobreza y promover el desarrollo humano en comunidades vulnerables del país. 
 
-El objetivo principal de PROGRESA es reducir la pobreza extrema y mejorar las condiciones de vida de las familias más desfavorecidas. Para lograrlo, el programa otorga transferencias económicas mensuales a las familias seleccionadas, siempre y cuando cumplan con ciertos requisitos y condiciones establecidas. Los beneficiarios son familias que viven en áreas rurales o urbanas con altos índices de pobreza y marginalidad, y que cumplen con los criterios definidos por el programa. 
+\item El objetivo principal de PROGRESA es reducir la pobreza extrema y mejorar las condiciones de vida de las familias más desfavorecidas. Para lograrlo, el programa otorga transferencias económicas mensuales a las familias seleccionadas, siempre y cuando cumplan con ciertos requisitos y condiciones establecidas. Los beneficiarios son familias que viven en áreas rurales o urbanas con altos índices de pobreza y marginalidad, y que cumplen con los criterios definidos por el programa. 
 
-\vspace{0.5cm}
 
-Entre las condiciones se encuentran aquellas relacionadas con la asistencia escolar de los niños. Los beneficiarios deben asegurar que sus hijos asistan regularmente a la escuela y que se mantengan inscritos para recibir el apoyo económico. De esta manera, PROGRESA busca fomentar la educación como una herramienta para romper el ciclo de pobreza. Además de la educación, el programa también pone énfasis en la salud y nutrición de las familias; los beneficiarios deben participar en programas de salud que incluyen chequeos médicos regulares, vacunación de los niños y acceso a servicios básicos de atención médica. 
+\item Entre las condiciones se encuentran aquellas relacionadas con la asistencia escolar de los niños. Los beneficiarios deben asegurar que sus hijos asistan regularmente a la escuela y que se mantengan inscritos para recibir el apoyo económico. De esta manera, PROGRESA busca fomentar la educación como una herramienta para romper el ciclo de pobreza. Además de la educación, el programa también pone énfasis en la salud y nutrición de las familias; los beneficiarios deben participar en programas de salud que incluyen chequeos médicos regulares, vacunación de los niños y acceso a servicios básicos de atención médica. 
 
-\vspace{0.5cm}
+\item El programa PROGRESA se somete a evaluaciones periódicas para medir su efectividad y asegurar el cumplimiento de los objetivos establecidos. Esto permite ajustar y mejorar el programa con el tiempo, buscando una mayor eficacia en el combate contra la pobreza y la promoción del desarrollo humano en México. 
 
-El programa PROGRESA se somete a evaluaciones periódicas para medir su efectividad y asegurar el cumplimiento de los objetivos establecidos. Esto permite ajustar y mejorar el programa con el tiempo, buscando una mayor eficacia en el combate contra la pobreza y la promoción del desarrollo humano en México. 
 
-\vspace{0.5cm}
+\item La base de datos panel\_progresa\_V1.dta contiene una submuestra de niños y jóvenes con la cual se puede medir el efecto que tiene la transferencia monetaria sobre la tasa de asistencia escolar. 
 
-La base de datos panel\_progresa\_V1.dta contiene una submuestra de niños y jóvenes con la cual se puede medir el efecto que tiene la transferencia monetaria sobre la tasa de asistencia escolar. 
-
-\vspace{0.5cm}
-
-El programa comenzó a intervenir a los beneficiarios en junio de 1998. Hizo 2 levantamientos de información previos a la intervención (octubre de 1997 y marzo de 1998) y 3 levantamientos posteriores a la intervención (octubre de 1998, mayo de 1999 y noviembre de 1999). El tratamiento fue asignado de forma aleatoria a nivel de
+\item El programa comenzó a intervenir a los beneficiarios en junio de 1998. Hizo 2 levantamientos de información previos a la intervención (octubre de 1997 y marzo de 1998) y 3 levantamientos posteriores a la intervención (octubre de 1998, mayo de 1999 y noviembre de 1999). El tratamiento fue asignado de forma aleatoria a nivel de
 centros poblados o localidades. No obstante, solamente una fracción de los habitantes de una localidad participante se terminó beneficiando. 
 
-\vspace{0.5cm}
-El propósito de este ejercicio es estimar el efecto del programa sobre la tasa de asistencia escolar mediante el estimador de diferencias en diferencias. Para lograr esto se necesitan 3 variables: una variable de tiempo post (después/antes de la intervención), una variable de tratamiento (si el hogar fue tratado o no) y un término de interacción de ambas, el cual es nuestro parámetro de interés. 
+
+\item  El propósito de este ejercicio es estimar el efecto del programa sobre la tasa de asistencia escolar mediante el estimador de diferencias en diferencias. Para lograr esto se necesitan 3 variables: una variable de tiempo post (después/antes de la intervención), una variable de tratamiento (si el hogar fue tratado o no) y un término de interacción de ambas, el cual es nuestro parámetro de interés. 
+
+\end{enumerate}
 
 \vspace{0.5cm}
 
-a) Organice (comando sort) la base en función de las variables "folio" (identificado de hogar), 'ID' (identificador del individuo dentro de su hogar) y 'periodo'. Genere un identificador para cada individuo juntando las variables ID y folio. 
+\begin{enumerate}
+\item [a).] Organice (comando sort) la base en función de las variables ''folio'' (identificado de hogar), ''ID'' (identificador del individuo dentro de su hogar) y ''periodo''. Genere un identificador para cada individuo juntando las variables ID y folio. 
+
+\vspace{0.5cm}
+
+\textbf{La base de datos \textit{panel\_progresa\_V1.dta} cuenta con 105565 observaciones y 24 variables. Respecto a los grupos formados con las variables folio e ID estos son un total de 21113. Además, debido a la estructura de panel de datos de la base se construyó la variable Periodo. Los códigos empleados se muestran a continuación}
+
+\begin{statacode}
+/* Código empleado para resolver la consulta a */ 
+
+/--------------------------------------------/ 
+
+clear all  // limpiamos sesión 
+
+cd ""  // Asigamos la carpeta de trabajo
+
+use panel\_progresa\_V1.dta, clear  // Cargamos la base de datos
+
+list  folio ID periodo in 1/10 // Listamos los primeros 10 datos de folio e ID 
+
+
+local vars `folio ID periodo' // Guardamos en una local las variables de interés
+
+sort `vars' // Ordenamos la base según la variable de interés 
+
+
+list  folio ID periodo in 1/10 // Observamos las primeras 10 observaciones de las variables de interés
+
+egen Id = group(folio ID) // Creamos el identificador de grupos
+
+
+label var Id `Identidicador por individuos' // Etiquetamos la variable Id
+
+bys folio ID (periodo): gen Periodo = \_n   // Generamos el número de observaciones por individuos
+
+list  Id Periodo in 1/10 // Volvemos a listar la base con las nuevas variables
+
+/--------------------------------------------/
+\end{statacode}
+ 
 ***/
 
-texdoc stlog
+texdoc stlog,cmdstrip
+quie{
 cd "C:\Users\Juan Rivas\Documents\Drive\CIES"
 clear all 
 notes: Cargamos la base de datos
@@ -105,15 +167,44 @@ notes: Generamos el número de observaciones por individuos
 label var Id "Identidicador por individuos"
 bys folio ID (periodo): gen Periodo = _n
 notes: Volvemos a listar la base con las nuevas variables
+}
+display("===============================")
+display("Estructura del Panel de Datos de las primeras 10 observaciones")
 list  Id Periodo in 1/10
 texdoc stlog close
+
 /***
 
 \vspace{0.5cm}
-b) Genere una variable dummy para cada ronda de encuesta. Es decir, convierta la variable categórica que muestra la base a una variable binaria para cada ronda de encuesta. 
+\item [b).] Genere una variable dummy para cada ronda de encuesta. Es decir, convierta la variable categórica que muestra la base a una variable binaria para cada ronda de encuesta. 
+
+\textbf{Para responder a esta consulta nos generamos un bucle que genere una variable dummy en función de cada uno de los periodos. Los detalles de código empleado se presentan a continuación: }
+
+\begin{statacode}
+/* Código empleado para resolver la consulta b */ 
+
+/--------------------------------------------/
+
+
+tab periodo, nol
+
+forvalues i=1/5 {
+    
+    g enc`i'=0
+	
+	replace enc`i' = 1 if periodo==`i'
+	
+}
+
+
+
+/--------------------------------------------/
+\end{statacode}
+ 
+
 
 ***/
-texdoc stlog
+texdoc stlog, nolog
 
 notes: Nos generamos una dummy por cada periodo de la encuesta
 tab periodo, nol
@@ -123,120 +214,231 @@ forvalues i=1/5 {
 }
 texdoc stlog close
 /***
+\item [c).] Genere las variables post, tratamiento e interacción. 
+
+\textbf{Dado que el programa comenzó a intervenir a los beneficiarios en junio de 1998, se generó una variable dummy que toma el valor de 1 a partir del período 3 (octubre de 1998) y 0 para períodos anteriores. Además, identificamos a la variable **part\_efectiva** para identificar a los tratados y controles. Con la multiplicación de las dos variables se generó la variable de interacción y; finalmente, se configuró la base de datos como de tipo panel.}
+
+\begin{statacode}
+/* Código empleado para resolver la consulta c */ 
+
+/--------------------------------------------/
+
+gen time = (periodo\>=3) \& !missing(periodo) 
+
+lab var time "Descripción"
+
+rename part\_ treated
 
 
+gen did = time*treated	
 
-c) Genere las variables post, tratamiento e interacción. 
+un panel
+
+xtset Id Periodo 
+
+/--------------------------------------------/
+\end{statacode}
+
 
 ***/
-texdoc stlog
-**** Generamos variable dummmy cuando el tratamiento comienza. El programa comenzó a intervenir a los beneficiarios en junio de 1998
+texdoc stlog, nolog
 gen time = (periodo>=3) & !missing(periodo) 
 rename part_ treated
 **** Creamos la interaccion entre ambos
 gen did = time*treated	
 **** Le indicamos a stata que trabajamos con un panel
 xtset Id Periodo 
-
 texdoc stlog close
 /***
 
 
-d) Genere una dummy si el hogar es considerado pobre en la primera línea de base (octubre de 1997). Hacer esto por "folio" usando el comando bysort. Es decir, si al menos 1 individuo es considerado pobre, todos los individuos de ese folio también sean considerados pobres. 
+\item [d).] Genere una dummy si el hogar es considerado pobre en la primera línea de base (octubre de 1997). Hacer esto por "folio" usando el comando bysort. Es decir, si al menos 1 individuo es considerado pobre, todos los individuos de ese folio también sean considerados pobres. 
+
+\textbf{Tal como solicita esta consulta lo que hacemos es identificar si el individuo es pobre en la línea base y si ocurre ello se extrapolan todos los resultados al folio}
+
+\begin{statacode}
+/* Código empleado para resolver la consulta d */ 
+
+/--------------------------------------------/
+
+gen poLB = 0
+
+bys folio: replace poLB = 1 if pobre == 1 \& periodo==1
+
+egen polb= max(poLB \> 0), by(folio)
+
+/--------------------------------------------/
+\end{statacode}
+
 
 ***/
-texdoc stlog
+texdoc stlog, nolog
 gen poLB = 0
 bys folio: replace poLB = 1 if pobre == 1 & periodo==1
 egen polb= max(poLB > 0), by(folio)
-tab polb
 texdoc stlog close
 /***
 
 
-e) Como la población objetivo del programa son los pobres, quédese solo con los individuos que se consideran pobres en la primera línea de base (octubre de 1997). 
+\item [e).] Como la población objetivo del programa son los pobres, quédese solo con los individuos que se consideran pobres en la primera línea de base (octubre de 1997). 
+
+\textbf{Tomando en cuenta la extrapolación realizada en la consulta anterior, lo hacemos es quedarnos con todos los folios que cumplen con esta condición }
+
+\begin{statacode}
+/* Código empleado para resolver la consulta e */ 
+
+/--------------------------------------------/
+
+keep if polb!=0
+
+/--------------------------------------------/
+\end{statacode}
+
+
 
 ***/
-texdoc stlog
+texdoc stlog, nolog
 keep if polb!=0
 texdoc stlog close
 /***
 
-f) Estime el efecto medio del tratamiento aplicando el método de doble diferencia. No olvide mostrar el valor de la 1era diferencia y de la 2da diferencia. 
+\item [f).] Estime el efecto medio del tratamiento aplicando el método de doble diferencia. No olvide mostrar el valor de la 1era diferencia y de la 2da diferencia. 
+
+\textbf{Tomemos en consideración que la ecuación a estimar es la siguiente dado el método de doble diferencia: }
+
+$$ attendschool _{it} = \alpha + \beta_1*time + \beta_2*treated + \beta_3*(time*treated) +\epsilon_{it} $$
+
+\textbf{La estimación anterior se realiza empleando Mínimos Cuadrados Ordinarios (MCO). Sin embargo, debido a la estructura de panel de datos se puede considerar la estimación mediante un panel de datos de efectos fijos. No obstante, el estimador within solo permite estimar el efecto promedio entre el grupo de tratamiento y el control como un todo pero no los efectos individuales por unidad. Dado ello, emplearemos MCO para responder a la consulta }
+
+\begin{statacode}
+/* Código empleado para resolver la consulta f */ 
+
+/--------------------------------------------/
+
+xtset Id Periodo
+
+reg attendschool  time treated did
+
+
+xtreg attendschool time treated did, fe  // xtreg
+
+
+xtreg attendschool time\#\#treated, fe // Forma alternativa
+
+diff everschool, t(treated) p(time) // con diff
+
+/--------------------------------------------/
+\end{statacode}
 
 ***/
-texdoc stlog
+texdoc stlog, nolog
 xtset Id Periodo
 * Con reg
-reg everschool time treated did
+reg attendschool  time treated did
+estimates store m1
 
 * Con xtreg
-xtreg everschool time treated did, fe 
+xtreg attendschool time treated did, fe 
+estimates store m2
 
 * Forma alternativa:
-xtreg everschool time##treated, fe 
-
+xtreg attendschool time##treated, fe 
 
 **** Paquete diff: nos hace todo esto sin escribir las regresiones
 
 *ssc install diff // Lo instalamos 
 
-diff everschool, t(treated) p(time)
+diff attendschool, t(treated) p(time)
+estimates store m3
+esttab m1 m2 m3 using t1.tex, replace se ///
+nonumbers mtitles(MCO EF diff)  ///
+title(Método de Diferencias en Diferencias\label{Cuadro1})
 texdoc stlog close
+texdoc write \input{t1.tex}
 /***
 
 
-g) Proponga y aplique mejoras a la estimación realizada: puede incluir covariables, clusterizar errores, corregir heterocedasticidad, etc. 
+\textbf{Como podemos observar del resultado anterior tanto la estimación mediante MCO y el comando diff nos brindan resultados similares con un efecto inicial de 0.0120, efecto que no es estimado por el modelo de panel de datos de efectos fijos; además, se tiene un efecto posterior de -0.0480; mientras que en panel de datos de efectos fjos es de -0.0580. Finalmente, el resultado de DiD es de 0.0352; es decir, el programa aumentó en 3.6\% la asistencia a la escuela.}
 
-\vspace{0.5cm}
 
-***/
-texdoc stlog
-* DiD sin variables de control
-diff everschool, t(treated) p(time)
+\item [g).] Proponga y aplique mejoras a la estimación realizada: puede incluir covariables, clusterizar errores, corregir heterocedasticidad, etc. 
+\end{enumerate}
+
+\textbf{Para corregir potenciales problemas con los errores estándar se realiza una estimación de tipo Boostrapping a partir de 50 estimaciones, luego de ello se incluyen un conjunto de covariables asociadas a asistir a la escuela; finalmente, se corrigen los errores estándar de las estimaciones mediate boostrapping}
+
+\begin{statacode}
+/* Código empleado para resolver la consulta g */ 
+
+/--------------------------------------------/
 
 * Bootstrapped std. err.:
 diff everschool, t(treated) p(time) bs rep(50)
 
 * DiD con variables de control (covariates)
 diff everschool, t(treated) p(time) cov( edad hhsize educfather educmother nodad nomom  sex)
+
 diff everschool, t(treated) p(time) cov( edad hhsize educfather educmother nodad nomom  sex) report
+
 diff everschool, t(treated) p(time) cov( edad hhsize educfather educmother nodad nomom  sex) report bs
 
+/--------------------------------------------/
+\end{statacode}
 
 
+***/
+texdoc stlog, nolog
+
+* Bootstrapped std. err.:
+diff attendschool, t(treated) p(time) bs rep(50)
+estimates store s1
+
+* DiD con variables de control (covariates)
+diff attendschool, t(treated) p(time) cov( edad hhsize educfather educmother nodad nomom  sex)
+estimates store s2
+diff attendschool, t(treated) p(time) cov( edad hhsize educfather educmother nodad nomom  sex) report
+diff attendschool, t(treated) p(time) cov( edad hhsize educfather educmother nodad nomom  sex) report bs
+estimates store s3
+esttab s1 s2 s3 using t2.tex, replace se ///
+nonumbers mtitles(M1 M2 M3)  ///
+title(Método de Diferencias en Diferencias\label{Cuadro1})
 texdoc stlog close
-/***
+texdoc write \input{t2.tex}
 
+/***
+\textbf{La inclusión de covariables y el trabajar con boostrapping vemos que no genera modificaciones en el efecto final.}
+
+
+\newpage
 
 
 \section{PROPENSITY SCORE MATCHING }
-
-CANASTA es un programa de apoyo alimentario que buscaba proporcionar una canasta básica de alimentos a familias en situación de vulnerabilidad y pobreza. El objetivo principal del programa es mejorar la nutrición y la alimentación de los hogares más necesitados, contribuyendo así a mejorar su calidad de vida. 
+\begin{enumerate}
+\item CANASTA es un programa de apoyo alimentario que buscaba proporcionar una canasta básica de alimentos a familias en situación de vulnerabilidad y pobreza. El objetivo principal del programa es mejorar la nutrición y la alimentación de los hogares más necesitados, contribuyendo así a mejorar su calidad de vida. 
 \vspace{0.5cm}
 
-El programa está dirigido a familias de escasos recursos, en especial a aquellas que se encontraban en situación de pobreza o pobreza extrema, y cuyo acceso a una alimentación adecuada era limitado. La selección de beneficiarios se basaba en criterios socioeconómicos establecidos por las autoridades estatales. Por tanto, la asignación del programa no es aleatoria. 
+\item El programa está dirigido a familias de escasos recursos, en especial a aquellas que se encontraban en situación de pobreza o pobreza extrema, y cuyo acceso a una alimentación adecuada era limitado. La selección de beneficiarios se basaba en criterios socioeconómicos establecidos por las autoridades estatales. Por tanto, la asignación del programa no es aleatoria. 
 En este ejercicio se busca estimar el efecto del programa Canasta sobre la estatura según la edad de los niños beneficiarios. En ese sentido, los investigadores tienen diferentes herramientas para balancear la muestra, de modo que los grupos sean comparables. Una de esas estrategias es Propensity Score Matching (PSM).
-\vspace{0.5cm}
 
-En la base de datos "emparejmaiento\_base" encontrará información de una muestra de 4 mil niños entre tratados y no tratados. Se le pide implementar el PSM siguiendo los siguientes pasos: 
+\item En la base de datos "emparejmaiento\_base" encontrará información de una muestra de 4 mil niños entre tratados y no tratados. Se le pide implementar el PSM siguiendo los siguientes pasos: 
+\end{enumerate}
 
-a) Explore la base de datos identificando la variable tratamiento, la variable de interés y las variables que pueden determinar si el niño accede o no al programa. 
+\begin{enumerate}
+\item [a).] Explore la base de datos identificando la variable tratamiento, la variable de interés y las variables que pueden determinar si el niño accede o no al programa. 
 
-b) Estime la probabilidad predicha de participación en el programa para cada individuo. 
+\item [b).] Estime la probabilidad predicha de participación en el programa para cada individuo. 
 
-c) Realice el emparejamiento con el vecino más cercano sin reemplazo y estime el efecto del programa. 
+\item [c).] Realice el emparejamiento con el vecino más cercano sin reemplazo y estime el efecto del programa. 
 
-d) Realice el emparejamiento con el vecino más cercano con reemplazo y estime el efecto del programa. 
+\item [d).] Realice el emparejamiento con el vecino más cercano con reemplazo y estime el efecto del programa. 
 
-e) Realice el emparejamiento con los 5 vecinos más cercano sin reemplazo y estime el efecto del programa. 
+\item [e).] Realice el emparejamiento con los 5 vecinos más cercano sin reemplazo y estime el efecto del programa. 
 
-f) Realice el emparejamiento con los 5 vecinos más cercano con reemplazo y estime el efecto del programa. 
+\item [f).] Realice el emparejamiento con los 5 vecinos más cercano con reemplazo y estime el efecto del programa. 
 
-g) Realice el emparejamiento con kernel y estime el efecto del programa. h) Compare la calidad del emparejamiento de los métodos aplicados. ¿Cuál realiza el mejor emparejamiento? 
+\item [g).] Realice el emparejamiento con kernel y estime el efecto del programa. h) Compare la calidad del emparejamiento de los métodos aplicados. ¿Cuál realiza el mejor emparejamiento? 
 
-i) Compare los efectos estimados de los diferentes métodos. ¿Cambian mucho? j) ¿Cuál de los métodos elegiría usted para presentar en una investigación? ¿Por qué? 
-
+\item [i).] Compare los efectos estimados de los diferentes métodos. ¿Cambian mucho? j) ¿Cuál de los métodos elegiría usted para presentar en una investigación? ¿Por qué? 
+\end{enumerate}
 
 
 

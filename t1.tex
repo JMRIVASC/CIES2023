@@ -1,0 +1,28 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Método de Diferencias en Diferencias\label{Cuadro1}}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{MCO}&\multicolumn{1}{c}{EF}&\multicolumn{1}{c}{diff}\\
+\hline
+time        &     -0.0480\sym{***}&     -0.0520\sym{***}&     -0.0480\sym{***}\\
+            &   (0.00399)         &   (0.00266)         &   (0.00399)         \\
+[1em]
+treated     &      0.0120\sym{**} &           0         &      0.0120\sym{**} \\
+            &   (0.00399)         &         (.)         &   (0.00399)         \\
+[1em]
+did         &      0.0352\sym{***}&      0.0361\sym{***}&                     \\
+            &   (0.00516)         &   (0.00343)         &                     \\
+[1em]
+\_diff       &                     &                     &      0.0352\sym{***}\\
+            &                     &                     &   (0.00516)         \\
+[1em]
+\_cons      &       0.879\sym{***}&       0.888\sym{***}&       0.879\sym{***}\\
+            &   (0.00309)         &   (0.00130)         &   (0.00309)         \\
+\hline
+\(N\)       &       73098         &       73098         &       73098         \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+\end{table}

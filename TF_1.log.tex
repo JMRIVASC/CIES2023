@@ -1,71 +1,8 @@
-. cd "C:\\Users\\Juan Rivas\\Documents\\Drive\\CIES"
-C:\\Users\\Juan Rivas\\Documents\\Drive\\CIES
 {\smallskip}
-. clear all 
+===============================
 {\smallskip}
-. notes: Cargamos la base de datos
+Estructura del Panel de Datos de las primeras 10 observaciones
 {\smallskip}
-. use panel_progresa_V1.dta, clear 
-{\smallskip}
-. notes: Listamos los primeros 10 datos de folio e ID
-{\smallskip}
-. list  folio ID periodo in 1/10
-{\smallskip}
-     {\TLC}\HLI{29}{\TRC}
-     {\VBAR} folio   ID          periodo {\VBAR}
-     {\LFTT}\HLI{29}{\RGTT}
-  1. {\VBAR} 11038    3     Octubre 1997 {\VBAR}
-  2. {\VBAR} 11038    3   Noviembre 1999 {\VBAR}
-  3. {\VBAR} 11038    3        Mayo 1999 {\VBAR}
-  4. {\VBAR} 11038    3       Marzo 1998 {\VBAR}
-  5. {\VBAR} 11038    3     Octubre 1998 {\VBAR}
-     {\LFTT}\HLI{29}{\RGTT}
-  6. {\VBAR} 11038    4     Octubre 1997 {\VBAR}
-  7. {\VBAR} 11038    4       Marzo 1998 {\VBAR}
-  8. {\VBAR} 11038    4        Mayo 1999 {\VBAR}
-  9. {\VBAR} 11038    4     Octubre 1998 {\VBAR}
- 10. {\VBAR} 11038    4   Noviembre 1999 {\VBAR}
-     {\BLC}\HLI{29}{\BRC}
-{\smallskip}
-. notes: Construímos una variable local para almacenar las variables a ordenar
-{\smallskip}
-. local vars "folio ID periodo"
-{\smallskip}
-. sort `vars'
-{\smallskip}
-. notes: Observamos las primeras 10 observaciones de las variables de interés
-{\smallskip}
-. list  folio ID periodo in 1/10
-{\smallskip}
-     {\TLC}\HLI{29}{\TRC}
-     {\VBAR} folio   ID          periodo {\VBAR}
-     {\LFTT}\HLI{29}{\RGTT}
-  1. {\VBAR} 11038    3     Octubre 1997 {\VBAR}
-  2. {\VBAR} 11038    3       Marzo 1998 {\VBAR}
-  3. {\VBAR} 11038    3     Octubre 1998 {\VBAR}
-  4. {\VBAR} 11038    3        Mayo 1999 {\VBAR}
-  5. {\VBAR} 11038    3   Noviembre 1999 {\VBAR}
-     {\LFTT}\HLI{29}{\RGTT}
-  6. {\VBAR} 11038    4     Octubre 1997 {\VBAR}
-  7. {\VBAR} 11038    4       Marzo 1998 {\VBAR}
-  8. {\VBAR} 11038    4     Octubre 1998 {\VBAR}
-  9. {\VBAR} 11038    4        Mayo 1999 {\VBAR}
- 10. {\VBAR} 11038    4   Noviembre 1999 {\VBAR}
-     {\BLC}\HLI{29}{\BRC}
-{\smallskip}
-. notes: Creamos el identificador de grupos
-{\smallskip}
-. egen Id = group(folio ID)
-{\smallskip}
-. notes: Generamos el número de observaciones por individuos
-{\smallskip}
-. label var Id "Identidicador por individuos"
-{\smallskip}
-. bys folio ID (periodo): gen Periodo = _n
-{\smallskip}
-. notes: Volvemos a listar la base con las nuevas variables
-{\smallskip}
-. list  Id Periodo in 1/10
 {\smallskip}
      {\TLC}\HLI{14}{\TRC}
      {\VBAR} Id   Periodo {\VBAR}
