@@ -112,7 +112,7 @@ centros poblados o localidades. No obstante, solamente una fracción de los habi
 
 \vspace{0.5cm}
 
-\textbf{La base de datos \textit{panel\_progresa\_V1.dta} cuenta con 105 565 observaciones y 24 variables. Respecto a los grupos formados con las variables folio e ID estos son un total de 21 113. Además, debido a la estructura de panel de datos de la base se construyó la variable Periodo. Los códigos empleados se muestran a continuación}
+\textbf{La base de datos \textit{panel\_progresa\_V1.dta} cuenta con 105 565 observaciones y 24 variables. Respecto a los grupos formados con las variables folio e ID estos son un total de 21 113. Además, debido a la estructura de panel de datos de la base se construyó la variable Periodo. En cuanto a los códigos, los cuales se muestran en el siguiente recuadro, se explora las 10 primeras observaciones de folio, periodo y ID con el comando list. Luego, creamos una macro local "vars" que contenga las variables folio, ID y periodo. Posteriormente, ordenamos la base de datos en función a la macro "vars". Creamos una variable "Id" que funcione como identificador único de folio y ID. Asimismo, asignamos una etiqueta a la variable "Id" que representa un identificador único por individuo. Finalmente, se crea la variable "Periodo" que asigna un número de tiempo secuencial para cada observación de cada individuo. Los códigos empleados se muestran a continuación}
 
 \begin{statacode}
 /* Código empleado para resolver la consulta a */ 
@@ -150,7 +150,7 @@ list Id Periodo in 1/10 // Volvemos a listar la base con las nuevas variables
 =======
 a) Organice (comando sort) la base en función de las variables "folio" (identificado de hogar), 'ID' (identificador del individuo dentro de su hogar) y 'periodo'. Genere un identificador para cada individuo juntando las variables ID y folio. 
 
-Para empezar a explorar la base de datos, visualizamos las 10 primeras observaciones de folio, periodo y list con el comando list. Luego, creamos una macro local "vars" que contenga las variables folio, ID y periodo. Posteriormente, ordenamos la base de datos en función a la macro "vars". Creamos una variable "Id" que funcione como identificador único de folio y ID. Asimismo, asignamos una etiqueta a la variable "Id" que representa un identificador único por individuo. Finalmente, se crea la variable "Periodo" que asigna un número de tiempo secuencial para cada observación de cada individuo. 
+Para empezar a explorar la base de datos, visualizamos las 10 primeras observaciones de folio, periodo y ID con el comando list. Luego, creamos una macro local "vars" que contenga las variables folio, ID y periodo. Posteriormente, ordenamos la base de datos en función a la macro "vars". Creamos una variable "Id" que funcione como identificador único de folio y ID. Asimismo, asignamos una etiqueta a la variable "Id" que representa un identificador único por individuo. Finalmente, se crea la variable "Periodo" que asigna un número de tiempo secuencial para cada observación de cada individuo. 
 
 >>>>>>> 8589a7f78e3a88d64923d54de33e92a3def799f7
 ***/
