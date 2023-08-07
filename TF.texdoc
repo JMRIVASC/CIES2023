@@ -183,6 +183,9 @@ texdoc stlog close
 /***
 
 \vspace{0.5cm}
+
+ddfffffffggggggggggggggggggggggggggggg
+
 <<<<<<< HEAD
 \item [b).] Genere una variable dummy para cada ronda de encuesta. Es decir, convierta la variable categórica que muestra la base a una variable binaria para cada ronda de encuesta. 
 
